@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2022 at 07:08 PM
+-- Generation Time: Aug 28, 2022 at 02:56 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -70,26 +70,28 @@ CREATE TABLE `data_pelanggan` (
   `ket_pelanggan` enum('A','T') NOT NULL,
   `lokasi_pelanggan` varchar(150) NOT NULL,
   `nama_pelanggan` varchar(100) NOT NULL,
-  `no_hp` varchar(25) NOT NULL
+  `no_hp` varchar(25) NOT NULL,
+  `nama_odp` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `data_pelanggan`
 --
 
-INSERT INTO `data_pelanggan` (`id_pelanggan`, `ket_pelanggan`, `lokasi_pelanggan`, `nama_pelanggan`, `no_hp`) VALUES
-(1, 'A', 'medan johor', 'Putri Aprilia', '081313131414'),
-(2, 'A', 'Binjai', 'Rahel cintya', '087766554433'),
-(3, 'A', 'medan johor', 'Putri Cahyani', '082211223344'),
-(4, 'A', 'deli serdang', 'Arya Putra', '082211223344'),
-(5, 'A', 'medan area', 'Zsazsa Sabilla', '081361200079'),
-(6, 'A', 'deli serdang', 'puri handayani', '081361200079'),
-(7, 'A', 'Binjai', 'Sabrina Thaharah', '087766554433'),
-(8, 'A', 'deli serdang', 'Diki Saputra', '087766554433'),
-(9, 'A', 'Binjai', 'Riko Koko', '081361200079'),
-(10, 'A', 'deli serdang', 'Rizky Nazar', '081313131414'),
-(11, 'A', 'Binjai', 'Muhammad Ezsra', '087766554433'),
-(12, 'A', 'BINJAI', 'RIKO', '897080');
+INSERT INTO `data_pelanggan` (`id_pelanggan`, `ket_pelanggan`, `lokasi_pelanggan`, `nama_pelanggan`, `no_hp`, `nama_odp`) VALUES
+(1, 'A', 'medan johor', 'Putri Aprilia', '081313131414', ''),
+(2, 'A', 'Binjai', 'Rahel cintya', '087766554433', ''),
+(3, 'A', 'medan johor', 'Putri Cahyani', '082211223344', ''),
+(4, 'A', 'deli serdang', 'Arya Putra', '082211223344', ''),
+(5, 'A', 'medan area', 'Zsazsa Sabilla', '081361200079', ''),
+(6, 'A', 'deli serdang', 'puri handayani', '081361200079', ''),
+(7, 'A', 'Binjai', 'Sabrina Thaharah', '087766554433', ''),
+(8, 'A', 'deli serdang', 'Diki Saputra', '087766554433', ''),
+(9, 'A', 'Binjai', 'Riko Koko', '081361200079', ''),
+(10, 'A', 'deli serdang', 'Rizky Nazar', '081313131414', ''),
+(11, 'A', 'Binjai', 'Muhammad Ezsra', '087766554433', ''),
+(12, 'A', 'BINJAI', 'RIKO', '897080', ''),
+(13, 'A', 'BINJAI', 'RIRI', '99999', 'ABC_000_XXX');
 
 -- --------------------------------------------------------
 
@@ -372,7 +374,11 @@ INSERT INTO `users` (`id`, `password`, `email`, `active`, `first_name`, `last_na
 (15, '$2y$08$ArwQdTJhZg1YaTFoUQN48eOIEXK4OnkMLXXGoUIPvbAjrHNQEchmq', 'yoyo@gmail.com', 1, 'Yoyo', 'Prasetyo', '081361200079', 'logo2.jpg'),
 (16, '$2y$08$N72SY7sbeHdGAH..PzbUzeJnHLOvaFlJE3z9tc3iEL.dKfG1trtwG', 'fajar@gmail.com', 1, 'Fajar', 'Somantri', '081361200079', 'logo3.jpg'),
 (17, '$2y$08$u6L1dhCTVwuGNdc8iHKks.aSLNvdY7Vsc4sC/GTHNgTuJw7EHu9Qm', 'prayoga@gmail.com', 1, 'prayoga', 'Prasetyo', NULL, 'default.jpg'),
-(18, '$2y$08$WnV7IBcIqfgy3j4nCs9ITuAQzfsCpxRZu33NRR3ygl4fI8FN9vEpC', 'adji@gmail.com', 1, 'Adji', 'Pribadi', NULL, 'default.jpg');
+(18, '$2y$08$WnV7IBcIqfgy3j4nCs9ITuAQzfsCpxRZu33NRR3ygl4fI8FN9vEpC', 'adji@gmail.com', 1, 'Adji', 'Pribadi', NULL, 'default.jpg'),
+(19, '$2y$08$fLSHHXDsDfOTXjKiR8zyTusiWnb/vCnpR41wIruuYitz4i/AyquWy', 'admin@admin.com', 1, 'admin', 'admin', '999', 'default.jpg'),
+(20, '$2y$08$jl6OBHbVbLp/oMXrwS8uaeJm/0.sicCnBqgOkRMLgYye8mklFC3sm', 'leader@gmail.com', 1, 'leader', 'leader', '9', 'default.jpg'),
+(21, '$2y$08$xbsS51bjm6iViW6.yKkXyuEP4iy7OxdfTRBdHFE82JJP4dhv/ofGm', 'teknisi@gmail.com', 1, 'teknisi', 'teknisi', '9', 'default.jpg'),
+(22, '$2y$08$acez4t1zhIl820rUeEJmseW/14JnilIatcw1iXPLeTO84vwgDHg4.', 'manager@gmail.com', 1, 'manager', 'manager', '9', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -397,7 +403,11 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (40, 15, 7),
 (41, 16, 7),
 (42, 17, 7),
-(44, 18, 6);
+(44, 18, 6),
+(45, 19, 1),
+(46, 20, 6),
+(47, 21, 7),
+(48, 22, 8);
 
 -- --------------------------------------------------------
 
@@ -516,7 +526,7 @@ ALTER TABLE `data_odp`
 -- AUTO_INCREMENT for table `data_pelanggan`
 --
 ALTER TABLE `data_pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `groups`
@@ -570,13 +580,13 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Constraints for dumped tables

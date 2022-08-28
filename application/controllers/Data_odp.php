@@ -209,6 +209,15 @@ class Data_odp extends CI_Controller
         redirect(site_url('data_odp'));
     }
 
+    // ambil_pelanggan
+    public function ambil_odp()
+    {
+        // json ambil nama odp dari id pelanggan
+        $id_pelanggan = $this->input->post('id', TRUE);
+        $data = $this->db->query("SELECT * from data_pelanggan where id_pelanggan = '$id_pelanggan'")->row();
+        echo json_encode($data->nama_odp);
+    }
+
     public function create()
     {
         $data = array(

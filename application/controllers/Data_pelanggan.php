@@ -9,7 +9,7 @@ class Data_pelanggan extends CI_Controller
     {
         parent::__construct();
         $c_url = $this->router->fetch_class();
-        $this->layout->auth(); 
+        $this->layout->auth();
         $this->layout->auth_privilege($c_url);
         $this->load->model('Data_pelanggan_model');
         $this->load->library('form_validation');
@@ -19,7 +19,7 @@ class Data_pelanggan extends CI_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 'data_pelanggan?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'data_pelanggan?q=' . urlencode($q);
@@ -53,42 +53,44 @@ class Data_pelanggan extends CI_Controller
         $this->load->view('template/backend', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         $row = $this->Data_pelanggan_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_pelanggan' => $row->id_pelanggan,
-		'ket_pelanggan' => $row->ket_pelanggan,
-		'lokasi_pelanggan' => $row->lokasi_pelanggan,
-		'nama_pelanggan' => $row->nama_pelanggan,
-		'no_hp' => $row->no_hp,
-	    );
-        $data['title'] = 'Data Pelanggan';
-        $data['subtitle'] = '';
-        $data['crumb'] = [
-            'Dashboard' => '',
-        ];
+                'id_pelanggan' => $row->id_pelanggan,
+                'ket_pelanggan' => $row->ket_pelanggan,
+                'lokasi_pelanggan' => $row->lokasi_pelanggan,
+                'nama_pelanggan' => $row->nama_pelanggan,
+                'no_hp' => $row->no_hp,
+                'nama_odp' => $row->nama_odp,
+            );
+            $data['title'] = 'Data Pelanggan';
+            $data['subtitle'] = '';
+            $data['crumb'] = [
+                'Dashboard' => '',
+            ];
 
-        $data['page'] = 'data_pelanggan/data_pelanggan_read';
-        $this->load->view('template/backend', $data);
+            $data['page'] = 'data_pelanggan/data_pelanggan_read';
+            $this->load->view('template/backend', $data);
         } else {
             $this->session->set_flashdata('error', 'Record Not Found');
             redirect(site_url('data_pelanggan'));
         }
     }
 
-    public function create() 
+    public function create()
     {
         $data = array(
             'button' => 'Create',
             'action' => site_url('data_pelanggan/create_action'),
-	    'id_pelanggan' => set_value('id_pelanggan'),
-	    'ket_pelanggan' => set_value('ket_pelanggan'),
-	    'lokasi_pelanggan' => set_value('lokasi_pelanggan'),
-	    'nama_pelanggan' => set_value('nama_pelanggan'),
-	    'no_hp' => set_value('no_hp'),
-	);
+            'id_pelanggan' => set_value('id_pelanggan'),
+            'ket_pelanggan' => set_value('ket_pelanggan'),
+            'lokasi_pelanggan' => set_value('lokasi_pelanggan'),
+            'nama_pelanggan' => set_value('nama_pelanggan'),
+            'no_hp' => set_value('no_hp'),
+            'nama_odp' => set_value('nama_odp'),
+        );
         $data['title'] = 'Data Pelanggan';
         $data['subtitle'] = '';
         $data['crumb'] = [
@@ -98,8 +100,8 @@ class Data_pelanggan extends CI_Controller
         $data['page'] = 'data_pelanggan/data_pelanggan_form';
         $this->load->view('template/backend', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -107,19 +109,20 @@ class Data_pelanggan extends CI_Controller
             $this->create();
         } else {
             $data = array(
-		'ket_pelanggan' => $this->input->post('ket_pelanggan',TRUE),
-		'lokasi_pelanggan' => $this->input->post('lokasi_pelanggan',TRUE),
-		'nama_pelanggan' => $this->input->post('nama_pelanggan',TRUE),
-		'no_hp' => $this->input->post('no_hp',TRUE),
-	    );
+                'ket_pelanggan' => $this->input->post('ket_pelanggan', TRUE),
+                'lokasi_pelanggan' => $this->input->post('lokasi_pelanggan', TRUE),
+                'nama_pelanggan' => $this->input->post('nama_pelanggan', TRUE),
+                'no_hp' => $this->input->post('no_hp', TRUE),
+                'nama_odp' => $this->input->post('nama_odp', TRUE),
+            );
 
             $this->Data_pelanggan_model->insert($data);
             $this->session->set_flashdata('success', 'Create Record Success');
             redirect(site_url('data_pelanggan'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->Data_pelanggan_model->get_by_id($id);
 
@@ -127,27 +130,28 @@ class Data_pelanggan extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('data_pelanggan/update_action'),
-		'id_pelanggan' => set_value('id_pelanggan', $row->id_pelanggan),
-		'ket_pelanggan' => set_value('ket_pelanggan', $row->ket_pelanggan),
-		'lokasi_pelanggan' => set_value('lokasi_pelanggan', $row->lokasi_pelanggan),
-		'nama_pelanggan' => set_value('nama_pelanggan', $row->nama_pelanggan),
-		'no_hp' => set_value('no_hp', $row->no_hp),
-	    );
+                'id_pelanggan' => set_value('id_pelanggan', $row->id_pelanggan),
+                'ket_pelanggan' => set_value('ket_pelanggan', $row->ket_pelanggan),
+                'lokasi_pelanggan' => set_value('lokasi_pelanggan', $row->lokasi_pelanggan),
+                'nama_pelanggan' => set_value('nama_pelanggan', $row->nama_pelanggan),
+                'no_hp' => set_value('no_hp', $row->no_hp),
+                'nama_odp' => set_value('nama_odp', $row->nama_odp),
+            );
             $data['title'] = 'Data Pelanggan';
-        $data['subtitle'] = '';
-        $data['crumb'] = [
-            'Dashboard' => '',
-        ];
+            $data['subtitle'] = '';
+            $data['crumb'] = [
+                'Dashboard' => '',
+            ];
 
-        $data['page'] = 'data_pelanggan/data_pelanggan_form';
-        $this->load->view('template/backend', $data);
+            $data['page'] = 'data_pelanggan/data_pelanggan_form';
+            $this->load->view('template/backend', $data);
         } else {
             $this->session->set_flashdata('error', 'Record Not Found');
             redirect(site_url('data_pelanggan'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -155,19 +159,20 @@ class Data_pelanggan extends CI_Controller
             $this->update($this->input->post('id_pelanggan', TRUE));
         } else {
             $data = array(
-		'ket_pelanggan' => $this->input->post('ket_pelanggan',TRUE),
-		'lokasi_pelanggan' => $this->input->post('lokasi_pelanggan',TRUE),
-		'nama_pelanggan' => $this->input->post('nama_pelanggan',TRUE),
-		'no_hp' => $this->input->post('no_hp',TRUE),
-	    );
+                'ket_pelanggan' => $this->input->post('ket_pelanggan', TRUE),
+                'lokasi_pelanggan' => $this->input->post('lokasi_pelanggan', TRUE),
+                'nama_pelanggan' => $this->input->post('nama_pelanggan', TRUE),
+                'no_hp' => $this->input->post('no_hp', TRUE),
+                'nama_odp' => $this->input->post('nama_odp', TRUE),
+            );
 
             $this->Data_pelanggan_model->update($this->input->post('id_pelanggan', TRUE), $data);
             $this->session->set_flashdata('success', 'Update Record Success');
             redirect(site_url('data_pelanggan'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->Data_pelanggan_model->get_by_id($id);
 
@@ -181,25 +186,27 @@ class Data_pelanggan extends CI_Controller
         }
     }
 
-    public function deletebulk(){
+    public function deletebulk()
+    {
         $delete = $this->Data_pelanggan_model->deletebulk();
-        if($delete){
+        if ($delete) {
             $this->session->set_flashdata('success', 'Delete Record Success');
-        }else{
+        } else {
             $this->session->set_flashdata('error', 'Delete Record failed');
         }
         echo $delete;
     }
-   
-    public function _rules() 
-    {
-	$this->form_validation->set_rules('ket_pelanggan', 'ket pelanggan', 'trim|required');
-	$this->form_validation->set_rules('lokasi_pelanggan', 'lokasi pelanggan', 'trim|required');
-	$this->form_validation->set_rules('nama_pelanggan', 'nama pelanggan', 'trim|required');
-	$this->form_validation->set_rules('no_hp', 'no hp', 'trim|required');
 
-	$this->form_validation->set_rules('id_pelanggan', 'id_pelanggan', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    public function _rules()
+    {
+        $this->form_validation->set_rules('ket_pelanggan', 'ket pelanggan', 'trim|required');
+        $this->form_validation->set_rules('lokasi_pelanggan', 'lokasi pelanggan', 'trim|required');
+        $this->form_validation->set_rules('nama_pelanggan', 'nama pelanggan', 'trim|required');
+        $this->form_validation->set_rules('no_hp', 'no hp', 'trim|required');
+        $this->form_validation->set_rules('nama_odp', 'nama odp', 'trim|required');
+
+        $this->form_validation->set_rules('id_pelanggan', 'id_pelanggan', 'trim');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function excel()
@@ -224,22 +231,24 @@ class Data_pelanggan extends CI_Controller
 
         $kolomhead = 0;
         xlsWriteLabel($tablehead, $kolomhead++, "No");
-	xlsWriteLabel($tablehead, $kolomhead++, "Ket Pelanggan");
-	xlsWriteLabel($tablehead, $kolomhead++, "Lokasi Pelanggan");
-	xlsWriteLabel($tablehead, $kolomhead++, "Nama Pelanggan");
-	xlsWriteLabel($tablehead, $kolomhead++, "No Hp");
+        xlsWriteLabel($tablehead, $kolomhead++, "Ket Pelanggan");
+        xlsWriteLabel($tablehead, $kolomhead++, "Lokasi Pelanggan");
+        xlsWriteLabel($tablehead, $kolomhead++, "Nama Pelanggan");
+        xlsWriteLabel($tablehead, $kolomhead++, "No Hp");
+        xlsWriteLabel($tablehead, $kolomhead++, "Nama ODP");
 
-	foreach ($this->Data_pelanggan_model->get_all() as $data) {
+        foreach ($this->Data_pelanggan_model->get_all() as $data) {
             $kolombody = 0;
 
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->ket_pelanggan);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->lokasi_pelanggan);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->nama_pelanggan);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->no_hp);
+            xlsWriteLabel($tablebody, $kolombody++, $data->ket_pelanggan);
+            xlsWriteLabel($tablebody, $kolombody++, $data->lokasi_pelanggan);
+            xlsWriteLabel($tablebody, $kolombody++, $data->nama_pelanggan);
+            xlsWriteLabel($tablebody, $kolombody++, $data->no_hp);
+            xlsWriteLabel($tablebody, $kolombody++, $data->nama_odp);
 
-	    $tablebody++;
+            $tablebody++;
             $nourut++;
         }
 
@@ -256,18 +265,18 @@ class Data_pelanggan extends CI_Controller
             'data_pelanggan_data' => $this->Data_pelanggan_model->get_all(),
             'start' => 0
         );
-        
-        $this->load->view('data_pelanggan/data_pelanggan_doc',$data);
+
+        $this->load->view('data_pelanggan/data_pelanggan_doc', $data);
     }
 
-  public function printdoc(){
+    public function printdoc()
+    {
         $data = array(
             'data_pelanggan_data' => $this->Data_pelanggan_model->get_all(),
             'start' => 0
         );
         $this->load->view('data_pelanggan/data_pelanggan_print', $data);
     }
-
 }
 
 /* End of file Data_pelanggan.php */
