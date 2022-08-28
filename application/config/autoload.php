@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
-| AUTO-LOADER
+| AUTO-LOADERs
 | -------------------------------------------------------------------
 | This file specifies which systems should be loaded by default.
 |
