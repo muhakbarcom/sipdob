@@ -195,6 +195,12 @@ class Data_odp extends CI_Controller
             }
         }
         if ($valid == 0) {
+            $data_update_file = array(
+                'validasi_data' => 2,
+            );
+            // update file_validasi_data di data_odp
+            $this->Data_odp_model->update($id_odp, $data_update_file);
+
             $data_v_odp = array(
                 'id_odp' => $v_odp->id_odp,
                 'id_pelanggan' => $v_odp->id_pelanggan,

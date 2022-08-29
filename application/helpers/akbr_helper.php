@@ -34,10 +34,13 @@ function cek_validasi_data($valid)
       return '<span class="badge badge-danger">Data Belum di Validasi</span>';
       break;
     case '1':
-      return '<span class="badge badge-success">Data Valid</span>';
+      return '<span class="badge badge-success" style="background-color:#198754">Data Valid</span>';
       break;
     case '2':
-      return '<span class="badge badge-warning">Data Tidak Valid</span>';
+      return '<span class="badge badge-warning" style="background-color:#dc3545">Data Tidak Valid</span>';
+      break;
+    case '4':
+      return '<span class="badge badge-warning" style="background-color:#fff000;color:#000">Data Sudah divalidasi</span>';
       break;
   }
 }
