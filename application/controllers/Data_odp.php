@@ -407,7 +407,7 @@ class Data_odp extends CI_Controller
         // $this->form_validation->set_rules('ket_pelanggan', 'ket pelanggan', 'trim|required');
         // $this->form_validation->set_rules('lokasi_pelanggan', 'lokasi pelanggan', 'trim|required');
         // $this->form_validation->set_rules('nama_pelanggan', 'nama pelanggan', 'trim|required');
-        $this->form_validation->set_rules('odp_name', 'odp name', 'trim|required');
+        $this->form_validation->set_rules('odp_name', 'odp name', 'trim');
         $this->form_validation->set_rules('otp_slot', 'otp slot', 'trim|required');
         $this->form_validation->set_rules('tgl_pengecekan', 'tgl pengecekan', 'trim|required');
 

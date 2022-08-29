@@ -24,21 +24,9 @@
                             <?php endforeach ?>
                         </select>
                     </div>
-                    <!-- <div class="form-group">
-            <label for="enum">Ket Pelanggan <?php echo form_error('ket_pelanggan') ?></label>
-            <input type="text" class="form-control" name="ket_pelanggan" id="ket_pelanggan" placeholder="Ket Pelanggan" value="<?php echo $ket_pelanggan; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="varchar">Lokasi Pelanggan <?php echo form_error('lokasi_pelanggan') ?></label>
-            <input type="text" class="form-control" name="lokasi_pelanggan" id="lokasi_pelanggan" placeholder="Lokasi Pelanggan" value="<?php echo $lokasi_pelanggan; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="varchar">Nama Pelanggan <?php echo form_error('nama_pelanggan') ?></label>
-            <input type="text" class="form-control" name="nama_pelanggan" id="nama_pelanggan" placeholder="Nama Pelanggan" value="<?php echo $nama_pelanggan; ?>" />
-        </div> -->
                     <div class="form-group">
                         <label for="int">Odp Name <?php echo form_error('odp_name') ?></label>
-                        <input disabled type="text" class="form-control" id="odp_name" placeholder="Odp Name" value="<?php echo $odp_name; ?>" />
+                        <input disabled type="text" class="form-control" id="odp_names" placeholder="Odp Name" value="<?php echo $odp_name; ?>" />
                         <input type="hidden" class="form-control" name="odp_name" id="odp_name" placeholder="Odp Name" value="<?php echo $odp_name; ?>" />
                     </div>
                     <div class="form-group">
@@ -74,6 +62,8 @@
             dataType: 'json',
             success: function(data) {
                 $('#odp_name').val(data);
+                $('#odp_names').val(data);
+
             }
 
         })
